@@ -21,7 +21,7 @@ def predict():
         bath = float(request.form.get('bath'))
         sqft = request.form.get('total_sqft')
         input = pd.DataFrame([[location, sqft, bath, bhk]], columns=['location', 'total_sqft', 'bath', 'bhk'])
-        prediction = pipe.predict(input)[0]
+        prediction = -(pipe.predict(input)[0])
     except:
         return 'All fields are necessary and should be numerical'
     return str(np.round(prediction, 2)*1e5)
